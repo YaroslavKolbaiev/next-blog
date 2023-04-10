@@ -9,8 +9,7 @@ Deployed with [Vercel](https://vercel.com/).
 ## Technologies used in current project
 
 - Authentification with [Firebase](https://firebase.google.com/)
-- Backend management [Graphql](https://graphql.org/)
-- Database with [Hygraph](https://hygraph.com)
+- Backend with [Graphql](https://graphql.org/) and [Hygraph](https://hygraph.com)
 - Styling with [Tailwind](https://tailwindcss.com/)
 
 ## Visit page

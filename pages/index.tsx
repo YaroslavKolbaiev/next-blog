@@ -6,6 +6,7 @@ import {
 } from '../components';
 import { getAllPosts, getPosts, getRecentPosts } from '../services/graphql';
 import { Post } from '../types/Posts';
+import { Context } from '../types/Context';
 
 type Props = {
   posts: Post[];
@@ -46,8 +47,8 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps(context: any) {
-  const page: string = context.query?.page || '1';
+export async function getServerSideProps(context: Context) {
+  const page = context.query?.page || '1';
   try {
     const posts = await getPosts((+page - 1) * 3);
     const { recentPosts } = await getRecentPosts();

@@ -9,6 +9,7 @@ import { UserContext } from '../../Context/UserContext';
 import { getComments, getPostDetails, getPosts } from '../../services/graphql';
 import { Comments } from '../../types/Comments';
 import { Post } from '../../types/Posts';
+import { Context } from '../../types/Context';
 
 type Props = {
   post: Post;
@@ -65,8 +66,8 @@ export async function getStaticProps(context: any) {
   }
 }
 
-export async function getStaticPaths(context: any) {
-  const page: string = context.query?.page || '1';
+export async function getStaticPaths(context: Context) {
+  const page = context.query?.page || '1';
   try {
     const posts = await getPosts(+page);
 
