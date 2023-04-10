@@ -1,18 +1,22 @@
 import Head from 'next/head';
 import React from 'react';
 import {
+  Pagination,
   PostCard, PostsError, PostWidjet, ReactSlick,
 } from '../components';
-import { getPosts, getRecentPosts } from '../services/graphql';
+import { getAllPosts, getPosts, getRecentPosts } from '../services/graphql';
 import { Post } from '../types/Posts';
 
 type Props = {
   posts: Post[];
   recentPosts: Post[];
   error: string;
+  allPosts: number
 };
 
-export default function Home({ posts, recentPosts, error }: Props) {
+export default function Home({
+  posts, recentPosts, error, allPosts,
+}: Props) {
   if (error) {
     return <PostsError />;
   }
@@ -37,19 +41,23 @@ export default function Home({ posts, recentPosts, error }: Props) {
           </div>
         </div>
       </div>
+      <Pagination totalItems={allPosts} />
     </div>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
+  const page: string = context.query?.page || '1';
   try {
-    const posts = await getPosts();
+    const posts = await getPosts((+page - 1) * 3);
     const { recentPosts } = await getRecentPosts();
+    const allPosts = await getAllPosts();
 
     return {
       props: {
         posts,
         recentPosts,
+        allPosts,
       },
     };
   } catch (error: any) {

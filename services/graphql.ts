@@ -12,10 +12,10 @@ type CommentsProps = {
   comments: Comments[]
 };
 
-export const getPosts = async () => {
+export const getPosts = async (page: number) => {
   const query = gql`
-    query MyQuery {
-      posts {
+    query GetPosts($page: Int) {
+      posts(skip: $page, first: 3) {
         createdAt
         slug
         title
@@ -26,9 +26,23 @@ export const getPosts = async () => {
     }
   `;
 
-  const { posts }: PostsProps = await request(graphqlAPI, query);
+  const { posts }: PostsProps = await request(graphqlAPI, query, { page });
 
   return posts;
+};
+
+export const getAllPosts = async () => {
+  const query = gql`
+    query GetAllPosts {
+      posts {
+        title
+      }
+    }
+  `;
+
+  const { posts }: PostsProps = await request(graphqlAPI, query);
+
+  return posts.length;
 };
 
 export const getRecentPosts = async () => {

@@ -65,9 +65,10 @@ export async function getStaticProps(context: any) {
   }
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(context: any) {
+  const page: string = context.query?.page || '1';
   try {
-    const posts = await getPosts();
+    const posts = await getPosts(+page);
 
     const pathParams = posts.map((post: Post) => ({
       params: {
