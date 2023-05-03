@@ -109,6 +109,10 @@ function LoginForm() {
             flex
             md:grow
             bg-slate-100
+            hover:bg-slate-200
+            transition
+            duration-500
+            ease
           "
         >
           <Image src="/google-ar21.svg" width={72} height={24} alt="google" />

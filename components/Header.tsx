@@ -41,7 +41,7 @@ function Header() {
           </div>
         ) : (
           <Link
-            className="cursor-pointer text-lg text-blue-800 md:float-right hover:underline"
+            className="cursor-pointer text-xl font-semibold text-blue-800 md:float-right hover:underline"
             href="/login"
           >
             Login

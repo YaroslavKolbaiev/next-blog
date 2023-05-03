@@ -62,7 +62,7 @@ function ReactSlick({ recentPosts }: Props) {
     </div>
   );
   return (
-    <div className="mb-6 bg-white shadow-lg rounded-lg">
+    <div className="mb-6 shadow-lg rounded-lg">
       <Carousel
         infinite
         customLeftArrow={customLeftArrow}
